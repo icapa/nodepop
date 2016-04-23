@@ -1,0 +1,10 @@
+{
+  "USER_NOT_FOUND": {
+    "es": "Usuario no encontrado",
+    "en": "User not found"
+  },
+  "PAGE_NOT_FOUND":{
+    "es": "Página no encontrada",
+    "en": "Page not found"
+  }
+}

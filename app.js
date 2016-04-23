@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var translate = require ('./lib/translator');
 
 var app = express();
 
@@ -20,15 +20,39 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', require('./routes/index');
-app.use('/users', require('./routes/users');
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
+// Meto mi manejador especial que traduce
+app.use(function(req, res, next) {
+  //-- Lo que leemos
+  var errorText;
+
+  console.log('Peticiones ->',req.query);
+
+  if (req.query.lan == undefined){
+    errorText = translate('PAGE_NOT_FOUND','es');
+  }
+  else{
+    errorText = translate('PAGE_NOT_FOUND',req.query['lan']);
+  }
+
+  console.log('por que no sale esto...',errorText);
+  var err = new Error(errorText);
+  err.status = 404;
+  next(err);
+});
+
+
+
+/*
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+*/
 
 // error handlers
 
