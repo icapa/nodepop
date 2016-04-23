@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=nodepop:* PORT=6969 nodemon ./bin/www"
+    "start": "DEBUG=nodepop:* PORT=6969 nodemon ./bin/www",
+    "installBD": "node install_bd"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

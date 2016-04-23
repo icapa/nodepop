@@ -22,6 +22,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/apiv1/anuncios',require('./routes/anuncios'));
+app.use('/apiv1/registro',require('./routes/registro'));
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
+module.exports = router;
+
 
 // Meto mi manejador especial que traduce
 app.use(function(req, res, next) {
