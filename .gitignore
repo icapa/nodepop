@@ -6,12 +6,14 @@ lib-cov
 *.out
 *.pid
 *.gz
-
+mongodb-osx*
 .idea
 
 pids
 logs
 results
+
+typescript
 
 node_modules
 npm-debug.log
