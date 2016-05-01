@@ -1,5 +1,6 @@
 {
-  "anuncios": [ {
+  "anuncios":
+  [ {
     "nombre": "Bicicleta", "venta": true,
     "precio": 230.15,
     "foto": "bici.jpg",
@@ -9,5 +10,6 @@
     "precio": 50.00,
     "foto": "iphone.png",
     "tags": [ "lifestyle", "mobile"]
-  } ]
+  }
+  ]
 }

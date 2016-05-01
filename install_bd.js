@@ -44,15 +44,26 @@ User.remove({},function(err){
             }
             console.log('\t Tokens deleted OK!!');
             rellenaBBDD(function(err){
-                console.log('Closing database...');
-                mongoose.connection.close();
-            })
+                rellenaAnuncios(function(err){
+                    if (!err){
+                        console.log('-- BBDD structure created OK !!!!---');
+                    }
+                    else
+                    {
+                        console.log('There was an error completing BBDD structure !!');
+                    }
+                    console.log('Closing database...');
+                    mongoose.connection.close();
+                });
+
+            });
         });
     });
 });
 
 function rellenaBBDD(cb){
     var user = new User({name: 'admin', email:'admin@nodepop.es',password: '12345'});
+    var token = new Token({platform:'ios', user:'admin@nodepop.es', token:'fake_token'});
     console.log('Filling bbdd with data...');
     user.save(function(err,reg){
         if (err){
@@ -61,12 +72,33 @@ function rellenaBBDD(cb){
             return;
         }
         console.log('User -> '+reg.name+ ' email->'+reg.email);
-        cb(null);
-        return;
+        token.save(function(err,reg){
+            if (err){
+                console.log('Error inserting token!');
+                cb(err);
+                return;
+            }
+            console.log('Token:');
+            console.log('\tUser: '+reg.user+', '+reg.platform+', '+reg.token);
+            cb(null);
+            return;
+        })
+
     });
 }
 
-
+function rellenaAnuncios(cb){
+    try {
+        var anunciosFs = require('fs').readFileSync('anuncios.json', 'utf-8');
+        var anunciosJson= JSON.parse(anunciosFs);
+        console.log('Inserting: '+ anunciosJson.anuncios.length+ ' ads');
+        mongoose.connection.collection('ads').insert(anunciosJson.anuncios);
+        cb(null);
+    }catch(err){
+        console.log('-- Error reading ad file...'+ err);
+        cb(err);
+    }
+}
 
 
 
