@@ -6,5 +6,25 @@
   "PAGE_NOT_FOUND":{
     "es": "Página no encontrada",
     "en": "Page not found"
+  },
+  "WRONG_QUERY":{
+    "es": "Patrón de búsqueda erróneo",
+    "en": "Wrong query format"
+  },
+  "NO_TOKEN_PROVIDED":{
+    "es": "No se envió Token",
+    "en": "No token provided"
+  },
+  "WRONG_AUTH_PARAMS":{
+    "es": "Parámetros de autentificación erróneos",
+    "en": "Wrong authentication parameters"
+  },
+  "USER_NOT_FOUND":{
+    "es": "Usuario no encontrado",
+    "en": "User not found"
+  },
+  "AUTH_FAILED":{
+    "es": "Error en autenticación",
+    "en": "Auth failed"
   }
 }

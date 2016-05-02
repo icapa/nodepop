@@ -8,6 +8,14 @@ var translate = require ('./lib/translator');
 
 var app = express();
 
+// Conexion a la base de datos
+require('./lib/connectMongoose');
+
+// Los modelos
+require('./models/Ad'); // Modelo de anuncios
+require('./models/User');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -20,20 +28,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*___------===== Las rutas ====-------______*/
+
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use('/apiv1/anuncios',require('./routes/anuncios'));
-app.use('/apiv1/registro',require('./routes/registro'));
-var express = require('express');
-var router = express.Router();
+app.use('/api/v1/usuarios', require('./routes/api/v1/usuarios'));
+app.use('/api/v1/anuncios',require('./routes/api/v1/anuncios'));
+
+
+
+
+
+//var express = require('express');
+//var router = express.Router();
 
 /* GET users listing. */
+/*
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
 module.exports = router;
-
+*/
 
 // Meto mi manejador especial que traduce
 app.use(function(req, res, next) {
