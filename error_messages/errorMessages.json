@@ -26,5 +26,17 @@
   "AUTH_FAILED":{
     "es": "Error en autenticación",
     "en": "Auth failed"
+  },
+  "USER_REGISTERED":{
+    "es": "El usuario ya está registrado",
+    "en": "User already registered"
+  },
+  "EMAIL_REGISTERED":{
+    "es": "El email ya está registrado",
+    "en": "Email is already registered"
+  },
+  "REGISTER_ERROR":{
+    "es": "Error instertando usuario en BBDD",
+    "en": "Error inserting user in BBDD"
   }
 }

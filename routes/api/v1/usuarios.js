@@ -21,6 +21,55 @@ var translator = require('../../../lib/translator');
 var User = require('mongoose').model('User');   // Cargamos el usuario
 
 
+router.post('/register',function(req,res){
+    var name = req.body.usuario;
+    var password = req.body.password;
+    var email = req.body.email;
+    var idioma = req.body.lan || req.query.lan  || 'es';
+    var hashPas='';
+
+    User.buscaUsuarioEmail(name,email,function(err,data){
+        if (err){
+            res.json({sucess:false, error:translator('WRONG_AUTH_PARAMS',idioma)})
+            return;
+        }
+        if (data[0]===true){
+            res.json({sucess:false, error:translator('USER_REGISTERED',idioma)});
+            return;
+        }
+        if (data[1]===true){
+            res.json({sucess: false, error:translator('EMAIL_REGISTERED',idioma)});
+            return;
+        }
+        //-- Si no podemos insertar el registro
+
+        // Aqui damos de alta
+        const crypto = require('crypto');
+        const hash = crypto.createHash('sha256');
+
+        hashPas = hash.update(password).digest('hex');
+
+        var usuario = new User({name: name,email: email,password: hashPas});
+
+        usuario.save(function(err,saved){
+            if (err){
+                return res.json({sucess: false, error:translator('REGISTER_ERROR',lan)});
+            }
+            return res.json({sucess: true, saved: saved});
+
+
+        });
+
+
+
+    });
+
+});
+
+
+
+
+
 
 /* GET users listing. */
 router.post('/authenticate', function(req, res) {

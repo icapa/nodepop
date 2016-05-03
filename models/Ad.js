@@ -50,6 +50,6 @@ adSchema.statics.precioAFiltro = function(precio){
     
     return elFiltro;
 
-}
+};
 
 var Ad = mongoose.model('Ad',adSchema);
