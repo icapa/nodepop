@@ -38,5 +38,17 @@
   "REGISTER_ERROR":{
     "es": "Error instertando usuario en BBDD",
     "en": "Error inserting user in BBDD"
+  },
+  "IMAGE_NOT_FOUND":{
+    "es": "La imagen requerida no existe",
+    "en": "The required image does not exist"
+  },
+  "WRONG_TOKEN_PARAMS":{
+    "es": "Error en los parámetros para incluir token-push",
+    "en": "Wrong token params for including token-push"
+  },
+  "PLATFORM_NOT_VALID":{
+    "es": "La plataforma elegida no es correcta",
+    "en": "The platform is not correct"
   }
 }
