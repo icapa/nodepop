@@ -3,6 +3,8 @@
  */
 "use strict";
 
+var util = require('util');
+
 var mongoose = require ('mongoose');
 
 // Add schema
@@ -22,6 +24,17 @@ adSchema.statics.list = function(filter,start,limit,sort,cb){
     query.limit(limit);
     query.sort(sort);
     return query.exec(cb);
+}
+
+/* Funcion que genera el filtro dependiendo si hay
+un tag o varios
+ */
+adSchema.statics.tagsAFiltro = function(tag){
+    //-- Es un array
+    if (util.isArray(tag)==true){
+        return {$in: tag};
+    }
+    return tag;
 }
 
 /* Funcion que convierte criterio de busqueda de precio a formato de mongo */

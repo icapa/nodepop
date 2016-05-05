@@ -81,10 +81,11 @@ router.post('/authenticate', function(req, res) {
 
 
     console.log('Busco nombre o usuario e idioma',email,name,idioma);
+    
+    
 
-
-    // Podemos hacer que autorice con usuario o contraseña
-    User.findOne({name: name}).exec(function(err,user){
+    // Podemos hacer que autorice con usuario y contraseña
+    User.findOne({name: name, email:email}).exec(function(err,user){
         console.log('Esto hemos encontrado: ', user, err)
         if (err){
             return res.status(500).json({sucess: false, error: translator('WRONG_AUTH_PARAMS',idioma)});
@@ -105,6 +106,8 @@ router.post('/authenticate', function(req, res) {
 
         res.json({sucess: true, token: token});
     })
+
 });
 
+    
 module.exports = router;

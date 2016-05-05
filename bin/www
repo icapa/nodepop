@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+"use strict";
 /**
  * Module dependencies.
  */
@@ -15,20 +15,37 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
 
-var server = http.createServer(app);
+/**** CLUSTER ****/
+var cluster = require('cluster');
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+if (cluster.isMaster){
+    //-- Soy el master, lanzo los clones
+    let numCPUs = require('os').cpus().length;
+    console.log(`Hay ${numCPUs} cpus`);
+    let workers = [];
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+    for (var i=0;i<numCPUs;i++){
+        workers.push(cluster.fork());
+    }
+}
+else {
 
+
+    /**
+     * Create HTTP server.
+     */
+
+    var server = http.createServer(app);
+
+    /**
+     * Listen on provided port, on all network interfaces.
+     */
+
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+}
 /**
  * Normalize a port into a number, string, or false.
  */

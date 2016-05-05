@@ -29,15 +29,15 @@ router.get('/', function(req, res, next) {
     var start = parseInt(req.query.start) || null;
     var sort = req.query.sort || null;
     
-    console.log(tag,venta,nombre,precio,limit,start,sort);
+    //console.log(tag,venta,nombre,precio,limit,start,sort);
     var criteria = {};
     
     if (typeof nombre != "undefined"){
-        criteria.nombre = new RegExp('^' + nombre, "i");
-        console.log('Criterio de nombre ->',criteria.name);
+        criteria.nombre = new RegExp('^' + nombre, 'i');
+        //console.log('Criterio de nombre ->',criteria.name);
     }
     if (typeof tag != "undefined"){
-        criteria.tags = tag
+        criteria.tags = Ad.tagsAFiltro(tag);
     }
     if (typeof venta != "undefined"){
         criteria.venta=venta;
@@ -54,7 +54,7 @@ router.get('/', function(req, res, next) {
         }
     }
 
-    console.log('Criteria ->',criteria);
+    //console.log('Criteria ->',criteria);
 
     Ad.list(criteria,start,limit,sort,function(err,rows) {
         if (err) {
