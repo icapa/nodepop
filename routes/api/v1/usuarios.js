@@ -53,7 +53,7 @@ router.post('/register',function(req,res){
 
         usuario.save(function(err,saved){
             if (err){
-                return res.json({sucess: false, error:translator('REGISTER_ERROR',lan)});
+                return res.json({sucess: false, error:translator('REGISTER_ERROR',idioma)});
             }
             return res.json({sucess: true, saved: saved});
 

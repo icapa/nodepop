@@ -83,7 +83,7 @@
 		{
 			"id": "db5f3912-1c10-7833-c6c5-caff3b6fe614",
 			"headers": "",
-			"url": "localhost:3000/api/v1/tokens?lan=es&token=aaaa",
+			"url": "localhost:3000/api/v1/tokens?lan=es&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3MjY3MTQwZGY0ODQ1NjcxMDliZTRmMSIsImlhdCI6MTQ2MjQ3MzE4OSwiZXhwIjoxNDYyNjQ1OTg5fQ.y-mr1nQSFvfzV-jeGySyTfBAdQApEfcnTXHSb6uoXRQ",
 			"preRequestScript": null,
 			"pathVariables": {},
 			"method": "PUT",
@@ -112,7 +112,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462401055005,
+			"time": 1462484465618,
 			"name": "token",
 			"description": "",
 			"collectionId": "46ba49c1-0fb4-ecf9-f368-298dc8669b67",

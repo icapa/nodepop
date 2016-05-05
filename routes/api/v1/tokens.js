@@ -61,7 +61,7 @@ router.put('/', function(req, res) {
         function(err,data){
             if (err){
                 console.log('Error en put');
-                return res.json({sucess:false,error:'Fallo'});
+                return res.json({sucess:false,error:translator('WRONG_TOKEN_PARAMS',idioma)});
             }
             return res.json({sucess:true,token:data});
         }
