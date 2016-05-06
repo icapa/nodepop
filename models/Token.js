@@ -1,7 +1,7 @@
 /**
  * Created by icapa on 27/4/16.
  */
-"use strict";
+'use strict';
 
 var mongoose = require ('mongoose');
 
@@ -13,6 +13,6 @@ var tokenSchema = mongoose.Schema({
     user: String
 });
 
-var Token =  mongoose.model('Token',tokenSchema);
+mongoose.model('Token',tokenSchema);
 
 

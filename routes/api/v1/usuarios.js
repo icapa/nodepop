@@ -2,14 +2,15 @@
  * Created by icapa on 24/4/16.
  */
 
-"use strict";
+'use strict';
 var jwt = require('jsonwebtoken');
 
 var config = require('../../../local_config');
 
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
+
+require('mongoose');
 
 
 var translator = require('../../../lib/translator');
@@ -30,7 +31,7 @@ router.post('/register',function(req,res){
 
     User.buscaUsuarioEmail(name,email,function(err,data){
         if (err){
-            res.json({sucess:false, error:translator('WRONG_AUTH_PARAMS',idioma)})
+            res.json({sucess:false, error:translator('WRONG_AUTH_PARAMS',idioma)});
             return;
         }
         if (data[0]===true){
@@ -86,7 +87,7 @@ router.post('/authenticate', function(req, res) {
 
     // Podemos hacer que autorice con usuario y contraseña
     User.findOne({name: name, email:email}).exec(function(err,user){
-        console.log('Esto hemos encontrado: ', user, err)
+        console.log('Esto hemos encontrado: ', user, err);
         if (err){
             return res.status(500).json({sucess: false, error: translator('WRONG_AUTH_PARAMS',idioma)});
         }
@@ -99,14 +100,14 @@ router.post('/authenticate', function(req, res) {
         passHaseado = hash.update(password).digest('hex');
         console.log('Hash pedido hasheado:',passHaseado);
         if (passHaseado !== user.password){
-            return res.status(401).json({sucess: false, error: translator('AUTH_FAILED',idioma)})
+            return res.status(401).json({sucess: false, error: translator('AUTH_FAILED',idioma)});
         }
         var token = jwt.sign({id: user._id},config.jwt.secret,{
             expiresIn: '2 days'
         });
 
         res.json({sucess: true, token: token});
-    })
+    });
 
 });
 

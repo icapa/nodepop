@@ -4,14 +4,16 @@
 /**
  * Created by icapa on 24/4/16.
  */
-"use strict";
+'use strict';
 
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
+
+require('mongoose');
 
 var translator = require ('../lib/translator');
-var jwtAuth = require('../lib/jwtAuth');
+
+require('../lib/jwtAuth');
 
 
 
@@ -22,12 +24,12 @@ var jwtAuth = require('../lib/jwtAuth');
 
 router.get('/:imagen',function(req,res){
     console.log('la imagen '+req.params.imagen);
-    var idioma = req.query.lan || "es";
+    var idioma = req.query.lan || 'es';
     res.download('./public/images/'+req.params.imagen,req.params.imagen,function(err){
         if (err){
             return res.json({sucess:false,error:translator('IMAGE_NOT_FOUND',idioma)});
         }
-    })
+    });
 
 });
 

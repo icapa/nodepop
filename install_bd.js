@@ -1,7 +1,7 @@
 /**
  * Created by icapa on 24/4/16.
  */
-"use strict";
+'use strict';
 
 var mongoose = require('mongoose');
 
@@ -20,30 +20,33 @@ var Token = require('mongoose').model('Token');
 
 // Script para cargar la base de datos
 
-console.log("-- Initializing bbdd ---");
+console.log('-- Initializing bbdd ---');
 
-console.log(" Deleting all the collections....");
+console.log('Deleting all the collections....');
 
 User.remove({},function(err){
    if (err){
-       console.log('\t Error deleting users!')
+       console.log('\t Error deleting users!');
        return;
    }
     console.log('\t Users deleted OK!!');
     Ad.remove({},function(err){
         if (err){
-            console.log('\t Error deleting ads!')
+            console.log('\t Error deleting ads!');
             return;
         }
         console.log('\t Ads deleted OK!!');
 
         Token.remove({},function(err){
             if (err){
-                console.log('\t Error deleting Tokens!')
+                console.log('\t Error deleting Tokens!');
                 return;
             }
             console.log('\t Tokens deleted OK!!');
             rellenaBBDD(function(err){
+                if (err){
+                    return console.log('-- ERROR CREANDO BBDD !!!');
+                }
                 rellenaAnuncios(function(err){
                     if (!err){
                         console.log('-- BBDD structure created OK !!!!---');
@@ -82,7 +85,7 @@ function rellenaBBDD(cb){
             console.log('\tUser: '+reg.user+', '+reg.platform+', '+reg.token);
             cb(null);
             return;
-        })
+        });
 
     });
 }

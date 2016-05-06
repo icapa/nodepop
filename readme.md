@@ -268,8 +268,8 @@ Algunos peticiones de la API devuelven JSON a registros de la base de datos. Aqu
 ##Anexo
 ###Lenguajes
 Todas las peticiones admiten el parámetro GET (lan=xx) donde el usuario puede pedir el idioma en el que se devolverán los errores. Los idiomas disponibles son:<br>
-<li>"es": Español
-<li>"en": Inglés
+<li>"es": Español</li>
+<li>"en": Inglés</li>
 
 ###Inicialización de la Base de datos
 Se ha creado un script llamado ***install_bd.js*** que se utiliza para borrar la base de datos y crear la estructura con un usuario y dos anuncios (incluidos en *anuncios.json*). Para llamar al script se ha creado una entrada en el *package.json*:
@@ -278,7 +278,24 @@ Se ha creado un script llamado ***install_bd.js*** que se utiliza para borrar la
 npm run installBD
 ``` 
 ###Colecciones POSTMAN
-Para la prueba de la API se han generado varias peticiones desde el software **Postman** de **Chrome**. En la carpeta:<br>
-<center><link href='/doc'>/doc</link></center>
-<br>
-se puede encontrar el fichero para importarlo. 
+Para la prueba de la API se han generado varias peticiones desde el software **Postman** de **Chrome**. En la siguiente carpeta se puede encontrar el fichero para importarlo:
+
+```
+doc
+```
+###Validación con JSHINT
+Para la validación de código se ha utilizado la herramienta **jshint** con la siguiente configuración:
+
+```
+{
+  "node": true,
+  "esnext": true,
+  "globals": {},
+  "globalstrict": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true
+}
+```
+
+ 

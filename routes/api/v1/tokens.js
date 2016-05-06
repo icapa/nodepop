@@ -5,14 +5,15 @@
  * Created by icapa on 24/4/16.
  */
 
-"use strict";
-var jwt = require('jsonwebtoken');
+'use strict';
+require('jsonwebtoken');
 
-var config = require('../../../local_config');
+require('../../../local_config');
 
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
+
+require('mongoose');
 
 var jwtAuth = require('../../../lib/jwtAuth');
 var translator = require('../../../lib/translator');
@@ -21,7 +22,7 @@ var translator = require('../../../lib/translator');
 
 
 
-var Token = require('mongoose').model('Token');   // Cargamos el usuario
+var Token = require('mongoose').model('Token');   // Cargamos el token
 
 router.use(jwtAuth());
 
@@ -35,7 +36,7 @@ router.put('/', function(req, res) {
 
     // Compruebo los parametros...si no estan devuelvo error
     if (platform===undefined || user===undefined || token===undefined){
-        return res.json({sucess:false, error:translator('WRONG_TOKEN_PARAMS',idioma)})
+        return res.json({sucess:false, error:translator('WRONG_TOKEN_PARAMS',idioma)});
     }
 
     /* Para que me valida lo de ios, android, etc..creo un dummy Token y

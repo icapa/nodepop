@@ -1,7 +1,7 @@
 /**
  * Created by icapa on 24/4/16.
  */
-"use strict";
+'use strict';
 
 var express = require('express');
 var router = express.Router();
@@ -18,7 +18,7 @@ var Ad = mongoose.model('Ad');
 router.use(jwtAuth());
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     var tag = req.query.tag;
     var venta = req.query.venta;
     var nombre = req.query.nombre;
@@ -34,20 +34,20 @@ router.get('/', function(req, res, next) {
     //console.log(tag,venta,nombre,precio,limit,start,sort);
     var criteria = {};
     
-    if (typeof nombre != "undefined"){
+    if (typeof nombre !== 'undefined'){
         criteria.nombre = new RegExp('^' + nombre, 'i');
         //console.log('Criterio de nombre ->',criteria.name);
     }
-    if (typeof tag != "undefined"){
+    if (typeof tag !== 'undefined'){
         criteria.tags = Ad.tagsAFiltro(tag);
     }
-    if (typeof venta != "undefined"){
+    if (typeof venta !== 'undefined'){
         criteria.venta=venta;
     }
-    if (typeof precio != "undefined"){
+    if (typeof precio !== 'undefined'){
         criteria.precio = Ad.precioAFiltro(precio);
     }
-    if (typeof venta !== "undefined"){
+    if (typeof venta !== 'undefined'){
         if (venta==='true'){
             criteria.venta=true;
         }

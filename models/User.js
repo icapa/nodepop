@@ -1,7 +1,7 @@
 /**
  * Created by icapa on 27/4/16.
  */
-"use strict";
+'use strict';
 
 
 var async = require('async');
@@ -11,11 +11,13 @@ var mongoose = require ('mongoose');
 // User schema
 
 var userSchema = mongoose.Schema({
-    name: {type: String, required: true, index:true},
+    name: {type: String, required: true},
     email: {type: String, required: true},
     password: {type: String, required: true}
 });
 
+userSchema.index({'email':1},{ unique: true});
+userSchema.index({'name':1},{ unique: true});
 
 userSchema.statics.buscaUsuarioEmail = function(usuario,email,callback){
     async.parallel({
@@ -25,7 +27,7 @@ userSchema.statics.buscaUsuarioEmail = function(usuario,email,callback){
                     return cb(err,null);
                 }
                 if (user){
-                    return cb(null,true);;
+                    return cb(null,true);
                 }
                 return cb(null,false);
             });
@@ -48,12 +50,6 @@ userSchema.statics.buscaUsuarioEmail = function(usuario,email,callback){
             callback(err,[result.userFind,result.emailFind]);
         }
     );
-}
-
-
-
-    
-
-
+};
 
 var User =  mongoose.model('User',userSchema);
