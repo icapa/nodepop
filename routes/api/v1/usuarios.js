@@ -3,31 +3,31 @@
  */
 
 'use strict';
-var jwt = require('jsonwebtoken');
+let jwt = require('jsonwebtoken');
 
-var config = require('../../../local_config');
+let config = require('../../../local_config');
 
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 require('mongoose');
 
 
-var translator = require('../../../lib/translator');
+let translator = require('../../../lib/translator');
 
 
 
 
 
-var User = require('mongoose').model('User');   // Cargamos el usuario
+let User = require('mongoose').model('User');   // Cargamos el usuario
 
 
 router.post('/register',function(req,res){
-    var name = req.body.usuario;
-    var password = req.body.password;
-    var email = req.body.email;
-    var idioma = req.body.lan || req.query.lan  || 'es';
-    var hashPas='';
+    let name = req.body.usuario;
+    let password = req.body.password;
+    let email = req.body.email;
+    let idioma = req.body.lan || req.query.lan  || 'es';
+    let hashPas='';
 
     User.buscaUsuarioEmail(name,email,function(err,data){
         if (err){
@@ -50,7 +50,7 @@ router.post('/register',function(req,res){
 
         hashPas = hash.update(password).digest('hex');
 
-        var usuario = new User({name: name,email: email,password: hashPas});
+        let usuario = new User({name: name,email: email,password: hashPas});
 
         usuario.save(function(err,saved){
             if (err){
@@ -74,11 +74,11 @@ router.post('/register',function(req,res){
 
 /* GET users listing. */
 router.post('/authenticate', function(req, res) {
-    var name = req.body.usuario;
-    var password = req.body.password;
-    var email = req.body.email;
-    var idioma = req.body.lan || req.query.lan  || 'es';
-    var passHaseado='';
+    let name = req.body.usuario;
+    let password = req.body.password;
+    let email = req.body.email;
+    let idioma = req.body.lan || req.query.lan  || 'es';
+    let passHaseado='';
 
 
     console.log('Busco nombre o usuario e idioma',email,name,idioma);
@@ -102,7 +102,7 @@ router.post('/authenticate', function(req, res) {
         if (passHaseado !== user.password){
             return res.status(401).json({sucess: false, error: translator('AUTH_FAILED',idioma)});
         }
-        var token = jwt.sign({id: user._id},config.jwt.secret,{
+        let token = jwt.sign({id: user._id},config.jwt.secret,{
             expiresIn: '2 days'
         });
 

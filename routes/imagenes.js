@@ -6,12 +6,12 @@
  */
 'use strict';
 
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 require('mongoose');
 
-var translator = require ('../lib/translator');
+let translator = require ('../lib/translator');
 
 require('../lib/jwtAuth');
 
@@ -24,7 +24,7 @@ require('../lib/jwtAuth');
 
 router.get('/:imagen',function(req,res){
     console.log('la imagen '+req.params.imagen);
-    var idioma = req.query.lan || 'es';
+    let idioma = req.query.lan || 'es';
     res.download('./public/images/'+req.params.imagen,req.params.imagen,function(err){
         if (err){
             return res.json({sucess:false,error:translator('IMAGE_NOT_FOUND',idioma)});

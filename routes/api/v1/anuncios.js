@@ -3,15 +3,15 @@
  */
 'use strict';
 
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose');
+let express = require('express');
+let router = express.Router();
+let mongoose = require('mongoose');
 
-var translator = require ('../../../lib/translator');
-var jwtAuth = require('../../../lib/jwtAuth');
+let translator = require ('../../../lib/translator');
+let jwtAuth = require('../../../lib/jwtAuth');
 
 
-var Ad = mongoose.model('Ad');
+let Ad = mongoose.model('Ad');
 
 //-- Requerimos autentificacion para todo
 
@@ -19,20 +19,20 @@ router.use(jwtAuth());
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-    var tag = req.query.tag;
-    var venta = req.query.venta;
-    var nombre = req.query.nombre;
-    var precio = req.query.precio;
-    var incluirTotal = req.query.incluirTotal || false;
+    let tag = req.query.tag;
+    let venta = req.query.venta;
+    let nombre = req.query.nombre;
+    let precio = req.query.precio;
+    let incluirTotal = req.query.incluirTotal || false;
 
-    var idioma = req.query.lan || 'es'; // Si hay idioma se coge, si no por defecto
+    let idioma = req.query.lan || 'es'; // Si hay idioma se coge, si no por defecto
     //---
-    var limit = parseInt(req.query.limit) || 0;
-    var start = parseInt(req.query.start) || null;
-    var sort = req.query.sort || null;
+    let limit = parseInt(req.query.limit) || 0;
+    let start = parseInt(req.query.start) || null;
+    let sort = req.query.sort || null;
     
     //console.log(tag,venta,nombre,precio,limit,start,sort);
-    var criteria = {};
+    let criteria = {};
     
     if (typeof nombre !== 'undefined'){
         criteria.nombre = new RegExp('^' + nombre, 'i');

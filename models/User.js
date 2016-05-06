@@ -4,13 +4,13 @@
 'use strict';
 
 
-var async = require('async');
+let async = require('async');
 
-var mongoose = require ('mongoose');
+let mongoose = require ('mongoose');
 
 // User schema
 
-var userSchema = mongoose.Schema({
+let userSchema = mongoose.Schema({
     name: {type: String, required: true},
     email: {type: String, required: true},
     password: {type: String, required: true}
@@ -52,4 +52,4 @@ userSchema.statics.buscaUsuarioEmail = function(usuario,email,callback){
     );
 };
 
-var User =  mongoose.model('User',userSchema);
+let User =  mongoose.model('User',userSchema);

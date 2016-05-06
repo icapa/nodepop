@@ -10,27 +10,27 @@ require('jsonwebtoken');
 
 require('../../../local_config');
 
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 require('mongoose');
 
-var jwtAuth = require('../../../lib/jwtAuth');
-var translator = require('../../../lib/translator');
+let jwtAuth = require('../../../lib/jwtAuth');
+let translator = require('../../../lib/translator');
 
 
 
 
 
-var Token = require('mongoose').model('Token');   // Cargamos el token
+let Token = require('mongoose').model('Token');   // Cargamos el token
 
 router.use(jwtAuth());
 
 router.put('/', function(req, res) {
-    var platform = req.body.plataforma;
-    var token = req.body.token || req.query.token ; // Para poder aprovechar el de autenticacion
-    var user = req.body.usuario;
-    var idioma = req.body.lan || req.query.lan  || 'es';
+    let platform = req.body.plataforma;
+    let token = req.body.token || req.query.token ; // Para poder aprovechar el de autenticacion
+    let user = req.body.usuario;
+    let idioma = req.body.lan || req.query.lan  || 'es';
 
     console.log('Actualizando...',platform,token,user);
 
@@ -43,8 +43,8 @@ router.put('/', function(req, res) {
     busco el error...
      */
 
-    var dummyToken = new Token({user:user,platform:platform,token:token});
-    var error = dummyToken.validateSync();
+    let dummyToken = new Token({user:user,platform:platform,token:token});
+    let error = dummyToken.validateSync();
     if (error){
 
         if(error.errors.platform.properties.path === 'platform'){

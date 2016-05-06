@@ -3,13 +3,13 @@
  */
 'use strict';
 
-var util = require('util');
+let util = require('util');
 
-var mongoose = require ('mongoose');
+let mongoose = require ('mongoose');
 
 // Add schema
 
-var adSchema = mongoose.Schema({
+let adSchema = mongoose.Schema({
     nombre: String,
     venta: Boolean,  // True si es una venta, False si es búsqueda
     precio: Number,
@@ -18,7 +18,7 @@ var adSchema = mongoose.Schema({
 });
 
 adSchema.statics.list = function(filter,start,limit,sort,cb){
-    var query = Ad.find(filter);
+    let query = Ad.find(filter);
     console.log('La query es:',filter);
     query.skip(start);
     query.limit(limit);
@@ -39,8 +39,8 @@ adSchema.statics.tagsAFiltro = function(tag){
 
 /* Funcion que convierte criterio de busqueda de precio a formato de mongo */
 adSchema.statics.precioAFiltro = function(precio){
-    var elFiltro={};
-    var items = precio.split('-');
+    let elFiltro={};
+    let items = precio.split('-');
 
     if (items.length===1) {
         return precio;
@@ -65,4 +65,4 @@ adSchema.statics.precioAFiltro = function(precio){
 
 };
 
-var Ad = mongoose.model('Ad',adSchema);
+let Ad = mongoose.model('Ad',adSchema);

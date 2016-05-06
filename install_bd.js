@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
 require('./lib/connectMongoose');
 
@@ -13,9 +13,9 @@ require('./models/Token');
 
 
 
-var User = require('mongoose').model('User');
-var Ad = require('mongoose').model('Ad');
-var Token = require('mongoose').model('Token');
+let User = require('mongoose').model('User');
+let Ad = require('mongoose').model('Ad');
+let Token = require('mongoose').model('Token');
 
 
 // Script para cargar la base de datos
@@ -65,8 +65,8 @@ User.remove({},function(err){
 });
 
 function rellenaBBDD(cb){
-    var user = new User({name: 'admin', email:'admin@nodepop.es',password: '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'});
-    var token = new Token({platform:'ios', user:'admin', token:'fake_token'});
+    let user = new User({name: 'admin', email:'admin@nodepop.es',password: '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'});
+    let token = new Token({platform:'ios', user:'admin', token:'fake_token'});
     console.log('Filling bbdd with data...');
     user.save(function(err,reg){
         if (err){
@@ -92,8 +92,8 @@ function rellenaBBDD(cb){
 
 function rellenaAnuncios(cb){
     try {
-        var anunciosFs = require('fs').readFileSync('anuncios.json', 'utf-8');
-        var anunciosJson= JSON.parse(anunciosFs);
+        let anunciosFs = require('fs').readFileSync('anuncios.json', 'utf-8');
+        let anunciosJson= JSON.parse(anunciosFs);
         console.log('Inserting: '+ anunciosJson.anuncios.length+ ' ads');
         mongoose.connection.collection('ads').insert(anunciosJson.anuncios);
         cb(null);

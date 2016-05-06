@@ -3,11 +3,11 @@
  */
 'use strict';
 
-var mongoose = require ('mongoose');
+let mongoose = require ('mongoose');
 
 // User schema
 
-var tokenSchema = mongoose.Schema({
+let tokenSchema = mongoose.Schema({
     platform: {type: String, enum: ['ios','android']},
     token: String,
     user: String
