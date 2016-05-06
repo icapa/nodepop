@@ -97,6 +97,7 @@ router.post('/authenticate', function(req, res) {
         const hash = crypto.createHash('sha256');
 
         passHaseado = hash.update(password).digest('hex');
+        console.log('Hash pedido hasheado:',passHaseado);
         if (passHaseado !== user.password){
             return res.status(401).json({sucess: false, error: translator('AUTH_FAILED',idioma)})
         }

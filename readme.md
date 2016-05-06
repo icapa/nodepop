@@ -102,12 +102,13 @@ En la primera fase de la API sólo está disponible el acceso a los anuncios sin
 		<li> start </li>
 		<li> limit </li>
 		<li> sort </li>
+		<li> incluirTotal </li>
 		<li> lan </li>
 	</td>
 	<td>
 		<li>OK:
 		<br>
-		{"sucess": true, "rows": Array JSON Anuncios}</li>
+		{"sucess": true,<br> total:num_reg,<br> "rows": Array JSON Anuncios}</li><br>
 		<li>ERROR:
 		<br>
 		{"sucess": false, "error": "detalles del error"}</li>
@@ -120,12 +121,14 @@ En la primera fase de la API sólo está disponible el acceso a los anuncios sin
 	<li>Precio menor que XX: "precio=-XX"</li>
 	<li>Precio entre XX e YY: "precio=XX-YY"</li>
 	<hr><li>venta: true para venta,false buscar</li>
-	<li>tag: Se puede usar varias veces para buscar artículos por varias etiquetas. Ejemplo: "tag=motor&tag=lifestyle"</li>
+	<li>tag: Se puede usar varias veces para buscar <br>artículos por varias etiquetas. Ejemplo: "tag=motor&tag=lifestyle"</li>
 	<li>nombre: Nombre del artículo</li>
 	<hr>
-	<li> start: Indicar el número de registro desde el que empezar </li>
+	<li> start: Indicar el número de registro desde<br> el que empezar </li>
 	<li> limit: Número máximo de registro a devolver
 	<li> sort: Indicar el campo por el que ordenar
+	<li> incluirTotal: Si es 'true' devuelve el número de <br>
+	registros devueltos dentro del JSON como 'total'
 	<hr>
 	Errores:
 	<li>Si los parámetros de búsqueda tiene formato erróneo
@@ -222,6 +225,7 @@ Algunos peticiones de la API devuelven JSON a registros de la base de datos. Aqu
 ```
 {
   "sucess": true,
+  "total": 2,
   "rows": [
     {
       "_id": "57267140df484567109be4f3",
@@ -273,3 +277,8 @@ Se ha creado un script llamado ***install_bd.js*** que se utiliza para borrar la
 ```
 npm run installBD
 ``` 
+###Colecciones POSTMAN
+Para la prueba de la API se han generado varias peticiones desde el software **Postman** de **Chrome**. En la carpeta:<br>
+<center><link href='/doc'>/doc</link></center>
+<br>
+se puede encontrar el fichero para importarlo. 

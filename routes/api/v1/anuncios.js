@@ -23,6 +23,8 @@ router.get('/', function(req, res, next) {
     var venta = req.query.venta;
     var nombre = req.query.nombre;
     var precio = req.query.precio;
+    var incluirTotal = req.query.incluirTotal || false;
+
     var idioma = req.query.lan || 'es'; // Si hay idioma se coge, si no por defecto
     //---
     var limit = parseInt(req.query.limit) || 0;
@@ -60,7 +62,11 @@ router.get('/', function(req, res, next) {
         if (err) {
             return res.json({sucess: false, error: translator('WRONG_QUERY',idioma)});
         }
-        res.json({sucess: true, rows: rows});
+        console.log('Se quiere incluir total', incluirTotal);
+        if (incluirTotal==='true'){
+            return res.json({sucess: true, total:rows.length, rows:rows});
+        }
+        return res.json({sucess: true, rows: rows});
 
     });
 });

@@ -62,7 +62,7 @@ User.remove({},function(err){
 });
 
 function rellenaBBDD(cb){
-    var user = new User({name: 'admin', email:'admin@nodepop.es',password: '12345'});
+    var user = new User({name: 'admin', email:'admin@nodepop.es',password: '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'});
     var token = new Token({platform:'ios', user:'admin', token:'fake_token'});
     console.log('Filling bbdd with data...');
     user.save(function(err,reg){
